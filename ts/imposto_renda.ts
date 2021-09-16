@@ -16,27 +16,28 @@ Trabalho de POO II 2
 cuja renda foi de 400.000,00 e possui 25 funcionários, o imposto fica: 400.000,00 *
 14% = 56.000,00*/
 class Imposto_Renda{
-   
+   private _nome: string;
+   private _renda: number;
     constructor(nome:string,renda:number){
-        this.nome = nome;
-        this.renda =renda}
+        this._nome = nome;
+        this._renda =renda}
 
     get nome(){
-        return this.nome
+        return this._nome
     }
     get renda(){
-        return this.renda
+        return this._renda
     }
     set nome(nome:string){
         if (nome == ''){
-            throw new Error('Nome esta Vazio')
+            throw new Error("Nome esta Vazio")
         }else{
             this.nome=nome
         }
     }
     set renda(renda:number){
-        if (renda == 0){
-            throw new Error('Renda nao pode ser nula')
+        if ((renda == 0)||(!renda)){
+            throw new Error("Renda nao pode ser nula")
         }else{
             this.renda = renda
         }
@@ -44,42 +45,45 @@ class Imposto_Renda{
 }
 
 class Pessoa_Fisica extends Imposto_Renda{
-    constructor(
-        private _gastos_saude:number)
+    private _gastos_saude:number;
+    constructor(nome: string, renda:number, gasto_saude:number)
         {
-        super(nome,renda)
+        super(nome,renda);
+        this._gastos_saude = gasto_saude;
     }
 
     get gastos_saude(){
         return this._gastos_saude
     }
     set gastos_saude(gastos_saude:number){
-        if (gastos_saude>0){
+        if ((gastos_saude>0)||(!gastos_saude)){
             this._gastos_saude=gastos_saude
         }else{
-            throw new Error('O gasto nao deve ser nulo')
+            throw new Error("O gasto nao deve ser nulo")
         }
     }
-    public imposto_fisica(renda:number){
-        if(renda<20000){
+    public imposto_fisica(){
+        if(this.renda<20000){
             if(this.gastos_saude>0){
-                let imposto = (renda*0.15)-(this._gastos_saude*0.5)
+                let imposto = (this.renda*0.15)-(this._gastos_saude*0.5)
             }else{
-                let imposto = (renda*0.15)
+                let imposto = (this.renda*0.15)
             }
         }else{
             if(this.gastos_saude>0){
-                let imposto = (renda*0.25)-(this._gastos_saude*0.5)
+                let imposto = (this.renda*0.25)-(this._gastos_saude*0.5)
             }else{
-                let imposto = (renda*0.25)
+                let imposto = (this.renda*0.25)
             }
         }
     }
 }
 class Pessoa_juridica extends Imposto_Renda{
-    constructor(
-        private _numero_funci:number
-    ){super(nome,renda)}
+    private _numero_funci:number;
+    constructor(nome:string, renda:number, numero_funci:number){
+        super(nome,renda);
+        this._numero_funci = numero_funci;
+    }
 
     
     get numero_funci(){
@@ -87,19 +91,43 @@ class Pessoa_juridica extends Imposto_Renda{
     }
 
     set numero_funci(numero_funci:number){
-        if (numero_funci > 0) {
+        if ((numero_funci > 0)||(!numero_funci)) {
            this._numero_funci= numero_funci 
         }else{
-            throw new Error('O numero de funcionarios deve ser maior que zero')
+            throw new Error("O numero de funcionarios deve ser maior que zero")
         }
     }
-    public imposto_juridico(renda:number,_numero_funci:number){
-        if(_numero_funci>= 10){
-            let imposto = renda*0.14
+    public imposto_juridico(){
+        if(this.numero_funci>= 10){
+            let imposto = this.renda*0.14
         }else{
-            let imposto = renda*0.16
+            let imposto = this.renda*0.16
         }
     }
 }
 
 
+const pessoaf = new Pessoa_Fisica("Daniel",10000,5000);
+let calculo = pessoaf.imposto_fisica()
+console.log(calculo)
+
+
+const pessoaj = new Pessoa_juridica('DC',400000,10);
+let jud = pessoaj.imposto_juridico()
+console.log(jud)
+
+
+try{
+    pessoaf.nome = "Daniel";
+    pessoaf.renda=10000;
+    pessoaf.gastos_saude=5000;
+}catch(err){
+    // console.log(err.message)
+}
+try{
+    pessoaj.nome = "Daniel";
+    pessoaj.renda=100000;
+    pessoaj.numero_funci=5;
+}catch(err){
+    // console.log(err.message)
+}

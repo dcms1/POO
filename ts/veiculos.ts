@@ -31,7 +31,7 @@ class Veiculos {
     }
 
     set modelo(modelo:string){
-        if (modelo == ''){
+        if ((modelo == '')||(!modelo)){
             throw new Error("O valo nao pode ser vazio");
             
         }else{
@@ -39,7 +39,7 @@ class Veiculos {
         }
     }
     set marca(marca:string){
-        if (marca == ''){
+        if ((marca == '')||(!marca)){
             throw new Error("O valo nao pode ser vazio");
             
         }else{
@@ -47,7 +47,7 @@ class Veiculos {
         }
     }
     set modanoelo(ano:number){
-        if (ano == 0){
+        if ((ano == 0)||(!ano)){
             throw new Error("O valo nao pode ser zero");
             
         }else{
@@ -55,7 +55,7 @@ class Veiculos {
         }
     }
     set valor_locacao(valor_locacao:number){
-        if (valor_locacao == 0){
+        if ((valor_locacao == 0)||(!valor_locacao)){
             throw new Error("O valo nao pode ser zero");
             
         }else{
@@ -63,7 +63,7 @@ class Veiculos {
         }
     }
     set qts_dias(qts_dias:number){
-        if (qts_dias == 0){
+        if ((qts_dias == 0)||(!qts_dias)){
             throw new Error("O valo nao pode ser zero");
             
         }else{
@@ -76,7 +76,11 @@ class Veiculos {
         return  valor_total
    }
 }
-
-let veiculo1 = new Veiculos('corsa','chevrolet',2006,100,3)
-console.log(veiculo1)
-console.log('O valor total a ser pago é',veiculo1.valor_total())
+try{
+    let veiculo1 = new Veiculos('corsa','chevrolet',2006,100,3)
+    console.log(veiculo1)
+    console.log('O valor total a ser pago é',veiculo1.valor_total())
+}catch(error){
+    // console.log(error.message);
+    
+}

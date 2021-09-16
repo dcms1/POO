@@ -9,10 +9,9 @@ interface Idendereço{
     bairro:string,
     cidade:string
 }
-class Endereco {
-    constructor({rua,numero,bairro,cidade}:Idendereço) {}
-    public mostrar({rua,numero,bairro,cidade}:Idendereço){
-        console.log('A rua e ',rua,'o numero',numero,'o bairro ',bairro,'a cidade ',cidade)
-    }
+const endereço: Idendereço = {
+    rua: "Rua ",
+    numero: 408,
+    bairro: "Teste",
+    cidade: "City"
 }
-let Endereco1= new Endereco({rua:'teste',numero:408,bairro:'bela vista',cidade:'pariba'})
