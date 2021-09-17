@@ -46,7 +46,7 @@ class Veiculos {
             this._marca = marca
         }
     }
-    set modanoelo(ano:number){
+    set ano(ano:number){
         if ((ano == 0)||(!ano)){
             throw new Error("O valo nao pode ser zero");
             
@@ -76,11 +76,13 @@ class Veiculos {
         return  valor_total
    }
 }
+let veiculo1 = new Veiculos('corsa','chevrolet',2006,100,3)
 try{
-    let veiculo1 = new Veiculos('corsa','chevrolet',2006,100,3)
+    veiculo1.qts_dias = 0
     console.log(veiculo1)
-    console.log('O valor total a ser pago é',veiculo1.valor_total())
-}catch(error){
-    // console.log(error.message);
+
+    // console.log('O valor total a ser pago é',veiculo1.valor_total())
+}catch(err:any){
+    console.log(err.message);
     
 }

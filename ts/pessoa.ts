@@ -23,11 +23,13 @@ class Pessoa{
    }
 
    set nome(nome: string){
-        if (nome.length > 0){
-            this._nome = nome;
+        if ((nome.length < 0)||(!nome)){
+            throw new Error('Nome precisa ser preenchido');
+            
+            
        }else{
-           throw new Error('Nome precisa ser preenchido');
-           
+            this._nome = nome;
+            
        }
    }
 
@@ -45,8 +47,8 @@ class Pessoa{
    }
 
    set idade(idade:number){
-       if (idade == 0) {
-           throw new Error("Por favor coloque um numero maior que zerp");
+       if ((idade <= 0)||(!idade)) {
+           throw new Error("Por favor coloque um numero maior que zero");
        }
        else {
            this._idade = idade
@@ -68,14 +70,14 @@ console.log(pessoa1)
 pessoa1.idade=25
 pessoa1.nome= 'Bia'
 pessoa1.sexo = 'F'
-console.log(pessoa1)
+// console.log(pessoa1)
 try {
-    pessoa1.nome = ""
-    console.log(pessoa1)
-} catch (error) {
-    console.log(error)
+    pessoa1.sexo = 'G'
+    
+} catch (error:any) {
+    console.log(error.message)
 }
 
-pessoa1.teste_idade()
+// pessoa1.teste_idade()
 
 

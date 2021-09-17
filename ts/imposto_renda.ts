@@ -29,17 +29,17 @@ class Imposto_Renda{
         return this._renda
     }
     set nome(nome:string){
-        if (nome == ''){
+        if ((nome == '')||(!nome)){
             throw new Error("Nome esta Vazio")
         }else{
-            this.nome=nome
+            this._nome=nome
         }
     }
     set renda(renda:number){
         if ((renda == 0)||(!renda)){
             throw new Error("Renda nao pode ser nula")
         }else{
-            this.renda = renda
+            this._renda = renda
         }
     }
 }
@@ -107,7 +107,7 @@ class Pessoa_juridica extends Imposto_Renda{
 }
 
 
-let pessoaf = new Pessoa_Fisica("Daniel",1000,500);
+let pessoaf = new Pessoa_Fisica("Daniel",50000,2000);
 let calculo = pessoaf.imposto_fisica()
 console.log(calculo)
 
@@ -116,15 +116,22 @@ let pessoaj = new Pessoa_juridica('DC',400000,10);
 let jud = pessoaj.imposto_juridico()
 console.log(jud)
 
-
-// try{
-//     pessoaf.nome = "Daniel";
-//     pessoaf.renda = 10000;
-//     pessoaf.gastos_saude=5000;
-//     pessoaj.nome = "ABC";
-//     pessoaj.renda=100000;
-//     pessoaj.numero_funci=5;
-// }catch(err){
-//     console.log(err.message);
+pessoaf.nome = "DC"
+console.log(pessoaj)
+try{
+    pessoaf.nome = "ASPAS";
+    pessoaf.renda = 10000;
+    pessoaf.gastos_saude=5000;
+    console.log(pessoaf)
+}catch(err:any){
+    console.log(err.message);
     
-// }
+}
+try{
+    pessoaj.nome = "ABC";
+    pessoaj.renda=10000;
+    pessoaj.numero_funci=5;
+    console.log(pessoaj)
+}catch(err:any){
+    console.log(err.message);
+}

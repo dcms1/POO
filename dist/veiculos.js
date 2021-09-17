@@ -47,6 +47,14 @@ var Veiculos = /** @class */ (function () {
         get: function () {
             return this._ano;
         },
+        set: function (ano) {
+            if ((ano == 0) || (!ano)) {
+                throw new Error("O valo nao pode ser zero");
+            }
+            else {
+                this._ano = ano;
+            }
+        },
         enumerable: false,
         configurable: true
     });
@@ -80,29 +88,18 @@ var Veiculos = /** @class */ (function () {
         enumerable: false,
         configurable: true
     });
-    Object.defineProperty(Veiculos.prototype, "modanoelo", {
-        set: function (ano) {
-            if ((ano == 0) || (!ano)) {
-                throw new Error("O valo nao pode ser zero");
-            }
-            else {
-                this._ano = ano;
-            }
-        },
-        enumerable: false,
-        configurable: true
-    });
     Veiculos.prototype.valor_total = function () {
         var valor_total = this.qts_dias * this.valor_locacao;
         return valor_total;
     };
     return Veiculos;
 }());
+var veiculo1 = new Veiculos('corsa', 'chevrolet', 2006, 100, 3);
 try {
-    var veiculo1 = new Veiculos('corsa', 'chevrolet', 2006, 100, 3);
+    veiculo1.qts_dias = 0;
     console.log(veiculo1);
-    console.log('O valor total a ser pago é', veiculo1.valor_total());
+    // console.log('O valor total a ser pago é',veiculo1.valor_total())
 }
-catch (error) {
-    // console.log(error.message);
+catch (err) {
+    console.log(err.message);
 }
