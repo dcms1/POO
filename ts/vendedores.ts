@@ -1,4 +1,4 @@
-/*Crie uma classe chamada Vendedores com os atributos nome, salario e valor da
+/* 6 Crie uma classe chamada Vendedores com os atributos nome, salario e valor da
 venda. Crie os getters e setters e as validações. Crie um método desconto para
 calcular 8% do salário.
 Crie uma classe filha chamada Vendedor de Pessoa Física com o atributo região,
@@ -107,7 +107,7 @@ class Vendedor_pf extends Vendedores {
       return 0;
     }
     public salario_liquido() {
-      return this.salario + this.comissao();
+      return (this._salario + this.comissao());
     }
 }
 
@@ -166,18 +166,18 @@ class Vendedor_pj extends Vendedores {
       return 0;
     }
   }
-let vendedor1 = new Vendedores("Daniel",5000 , 100);
-console.log(vendedor1)
-let desconto = vendedor1.desconto()
-console.log(desconto)
+// let vendedor1 = new Vendedores("Daniel",5000 , 100);
+// console.log(vendedor1)
+// let desconto = vendedor1.desconto()
+// console.log(desconto)
 
 let vendedor_PF = new Vendedor_pf("Daniel", 5000, 100, "Sul");
 console.log(vendedor_PF)
-let salario_liqui = vendedor_PF.salario_liquido
+let salario_liqui = vendedor_PF.salario_liquido()
 console.log(salario_liqui)
 
-let vendedor_PJ = new Vendedor_pj("Daniel", 5000, 100, "Ttest", 10);
-console.log(vendedor_PJ)
-let salario = vendedor_PJ.salario_total()
-console.log(salario)
+// let vendedor_PJ = new Vendedor_pj("Daniel", 5000, 100, "Ttest", 10);
+// console.log(vendedor_PJ)
+// let salario = vendedor_PJ.salario_total()
+// console.log(salario)
 
