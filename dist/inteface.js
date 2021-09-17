@@ -5,3 +5,4 @@ var endereço = {
     bairro: "Teste",
     cidade: "City"
 };
+console.log(endereço);

@@ -15,3 +15,4 @@ const endereço: Idendereço = {
     bairro: "Teste",
     cidade: "City"
 }
+console.log(endereço)

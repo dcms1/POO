@@ -93,18 +93,18 @@ var Pessoa_Fisica = /** @class */ (function (_super) {
     Pessoa_Fisica.prototype.imposto_fisica = function () {
         if (this.renda < 20000) {
             if (this.gastos_saude > 0) {
-                var imposto = (this.renda * 0.15) - (this._gastos_saude * 0.5);
+                return (this.renda * 0.15 - this._gastos_saude * 0.5);
             }
             else {
-                var imposto = (this.renda * 0.15);
+                return this.renda * 0.15;
             }
         }
         else {
-            if (this.gastos_saude > 0) {
-                var imposto = (this.renda * 0.25) - (this._gastos_saude * 0.5);
+            if (this.gastos_saude > 20000) {
+                return (this.renda * 0.25 - this._gastos_saude * 0.5);
             }
             else {
-                var imposto = (this.renda * 0.25);
+                return this.renda * 0.25;
             }
         }
     };
@@ -134,33 +134,27 @@ var Pessoa_juridica = /** @class */ (function (_super) {
     });
     Pessoa_juridica.prototype.imposto_juridico = function () {
         if (this.numero_funci >= 10) {
-            var imposto = this.renda * 0.14;
+            return this.renda * 0.14;
         }
         else {
-            var imposto = this.renda * 0.16;
+            return this.renda * 0.16;
         }
     };
     return Pessoa_juridica;
 }(Imposto_Renda));
-var pessoaf = new Pessoa_Fisica("Daniel", 10000, 5000);
+var pessoaf = new Pessoa_Fisica("Daniel", 1000, 500);
 var calculo = pessoaf.imposto_fisica();
 console.log(calculo);
 var pessoaj = new Pessoa_juridica('DC', 400000, 10);
 var jud = pessoaj.imposto_juridico();
 console.log(jud);
-try {
-    pessoaf.nome = "Daniel";
-    pessoaf.renda = 10000;
-    pessoaf.gastos_saude = 5000;
-}
-catch (err) {
-    // console.log(err.message)
-}
-try {
-    pessoaj.nome = "Daniel";
-    pessoaj.renda = 100000;
-    pessoaj.numero_funci = 5;
-}
-catch (err) {
-    // console.log(err.message)
-}
+// try{
+//     pessoaf.nome = "Daniel";
+//     pessoaf.renda = 10000;
+//     pessoaf.gastos_saude=5000;
+//     pessoaj.nome = "ABC";
+//     pessoaj.renda=100000;
+//     pessoaj.numero_funci=5;
+// }catch(err){
+//     console.log(err.message);
+// }

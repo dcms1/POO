@@ -65,15 +65,15 @@ class Pessoa_Fisica extends Imposto_Renda{
     public imposto_fisica(){
         if(this.renda<20000){
             if(this.gastos_saude>0){
-                let imposto = (this.renda*0.15)-(this._gastos_saude*0.5)
+                return    (this.renda*0.15 - this._gastos_saude*0.5)
             }else{
-                let imposto = (this.renda*0.15)
+                return    this.renda*0.15
             }
         }else{
-            if(this.gastos_saude>0){
-                let imposto = (this.renda*0.25)-(this._gastos_saude*0.5)
+            if (this.gastos_saude>20000){
+                return    (this.renda*0.25-this._gastos_saude*0.5)
             }else{
-                let imposto = (this.renda*0.25)
+                return    this.renda*0.25
             }
         }
     }
@@ -99,35 +99,32 @@ class Pessoa_juridica extends Imposto_Renda{
     }
     public imposto_juridico(){
         if(this.numero_funci>= 10){
-            let imposto = this.renda*0.14
+            return this.renda*0.14
         }else{
-            let imposto = this.renda*0.16
+            return this.renda*0.16
         }
     }
 }
 
 
-const pessoaf = new Pessoa_Fisica("Daniel",10000,5000);
+let pessoaf = new Pessoa_Fisica("Daniel",1000,500);
 let calculo = pessoaf.imposto_fisica()
 console.log(calculo)
 
 
-const pessoaj = new Pessoa_juridica('DC',400000,10);
+let pessoaj = new Pessoa_juridica('DC',400000,10);
 let jud = pessoaj.imposto_juridico()
 console.log(jud)
 
 
-try{
-    pessoaf.nome = "Daniel";
-    pessoaf.renda=10000;
-    pessoaf.gastos_saude=5000;
-}catch(err){
-    // console.log(err.message)
-}
-try{
-    pessoaj.nome = "Daniel";
-    pessoaj.renda=100000;
-    pessoaj.numero_funci=5;
-}catch(err){
-    // console.log(err.message)
-}
+// try{
+//     pessoaf.nome = "Daniel";
+//     pessoaf.renda = 10000;
+//     pessoaf.gastos_saude=5000;
+//     pessoaj.nome = "ABC";
+//     pessoaj.renda=100000;
+//     pessoaj.numero_funci=5;
+// }catch(err){
+//     console.log(err.message);
+    
+// }
