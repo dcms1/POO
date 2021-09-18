@@ -100,7 +100,7 @@ var Pessoa_Fisica = /** @class */ (function (_super) {
             }
         }
         else {
-            if (this.gastos_saude > 20000) {
+            if (this.gastos_saude > 0) {
                 return (this.renda * 0.25 - this._gastos_saude * 0.5);
             }
             else {
@@ -143,28 +143,27 @@ var Pessoa_juridica = /** @class */ (function (_super) {
     return Pessoa_juridica;
 }(Imposto_Renda));
 var pessoaf = new Pessoa_Fisica("Daniel", 50000, 2000);
+console.log(pessoaf);
 var calculo = pessoaf.imposto_fisica();
 console.log(calculo);
-var pessoaj = new Pessoa_juridica('DC', 400000, 10);
-var jud = pessoaj.imposto_juridico();
-console.log(jud);
-pessoaf.nome = "DC";
-console.log(pessoaj);
-try {
-    pessoaf.nome = "ASPAS";
-    pessoaf.renda = 10000;
-    pessoaf.gastos_saude = 5000;
-    console.log(pessoaf);
-}
-catch (err) {
-    console.log(err.message);
-}
-try {
-    pessoaj.nome = "ABC";
-    pessoaj.renda = 10000;
-    pessoaj.numero_funci = 5;
-    console.log(pessoaj);
-}
-catch (err) {
-    console.log(err.message);
-}
+// let pessoaj = new Pessoa_juridica('DC',400000,25);
+// let jud = pessoaj.imposto_juridico()
+// console.log(jud)
+// pessoaf.nome = "DC"
+// console.log(pessoaj)
+// try{
+//     pessoaf.nome = "ASPAS";
+//     pessoaf.renda = 10000;
+//     pessoaf.gastos_saude=5000;
+//     console.log(pessoaf)
+// }catch(err:any){
+//     console.log(err.message);
+// }
+// try{
+//     pessoaj.nome = "ABC";
+//     pessoaj.renda=10000;
+//     pessoaj.numero_funci=5;
+//     console.log(pessoaj)
+// }catch(err:any){
+//     console.log(err.message);
+// }
